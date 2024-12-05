@@ -16,25 +16,28 @@ class MainActivity : AppCompatActivity() {
         welcomeView.text = "Rock-Paper-Scissors!"
 
         val rockButton = findViewById<TextView>(R.id.buttonRock)
-        rockButton.setText("✊")
-        rockButton.setOnClickListener() {
+        rockButton.text = "✊"
+        rockButton.setOnClickListener {
             playGame("Rock")
         }
 
         val paperButton = findViewById<TextView>(R.id.buttonPaper)
-        paperButton.setText("✋")
-        paperButton.setOnClickListener() {
+        paperButton.text = "✋"
+        paperButton.setOnClickListener {
             playGame("Paper")
         }
 
         val scissorsButton = findViewById<TextView>(R.id.buttonScissors)
-        scissorsButton.setText("✌️")
-        scissorsButton.setOnClickListener() {
+        scissorsButton.text = "✌️"
+        scissorsButton.setOnClickListener{
             playGame("Scissors")
         }
 
     }
     private fun playGame(player: String) {
+        /*
+        Game logic - it selects a random choice for the AI and then calls getWinner function.
+         */
         val aiChoice = listOf("Rock", "Paper", "Scissors").random()
         val result = getWinner(player, aiChoice)
         val playerchoice = findViewById<TextView>(R.id.playerchoiceTV)
@@ -45,6 +48,9 @@ class MainActivity : AppCompatActivity() {
         resultView.text = "Result: $result"
     }
     private fun getWinner(player: String, ai: String): String {
+        /*
+        This function determines the winner of the game.
+         */
         return when {
             player == ai -> "It's a tie!"
             (player == "Rock" && ai == "Scissors") ||
@@ -54,6 +60,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun emoji(choice: String): String {
+        /*
+        This function returns the emoji for the choice.
+         */
         return when (choice) {
             "Rock" -> "✊"
             "Paper" -> "✋"
